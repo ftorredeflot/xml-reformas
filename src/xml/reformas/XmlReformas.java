@@ -39,7 +39,7 @@ public class XmlReformas implements Serializable {
                     newPresupuesto();
                     break;
                 case 3:
-                    //mostrarPendientes();
+                    mostrarPendientes();
                     break;
                 case 4:
                     //presupuestosCliente();
@@ -134,4 +134,25 @@ public class XmlReformas implements Serializable {
         }
     }
 
+        private static void mostrarPendientes() {
+        int num = 1;
+        for (Cliente cliente : listaClientes.getLista()) {
+            for (Presupuesto presupuesto : cliente.getListaPres().getLista()) {
+                if (presupuesto.getEstado().equalsIgnoreCase("pendiente")) {
+                    System.out.println("Presupuesto pendiente nº " + num);
+                    System.out.println("**********************************");
+                    System.out.println("Datos Cliente:");
+                    System.out.println("Nombre :" + cliente.getNombre());
+                    System.out.println("Apellido :" + cliente.getApellido());
+                    System.out.println("Telefono :" + cliente.getTel());
+                    System.out.println("**********************************");
+                    System.out.println("Concepto: " + presupuesto.getConcepto());
+                    System.out.println("Precio neto: " + presupuesto.getPrecioN());                    
+                    System.out.println("----------------------------------------------");
+                    num++;
+                }
+            }
+
+        }
+    }
 }
