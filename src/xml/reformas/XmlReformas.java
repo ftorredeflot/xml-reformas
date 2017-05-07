@@ -42,7 +42,7 @@ public class XmlReformas implements Serializable {
                     mostrarPendientes();
                     break;
                 case 4:
-                    //presupuestosCliente();
+                    presupuestosCliente();
                     break;
                 case 5:
                     //presupuestosRechazados();
@@ -111,7 +111,7 @@ public class XmlReformas implements Serializable {
             if (crear.equals("s")) {
                 newCliente();
             } else {
-              return;  
+                return;
             }
         } else {
             String concepto;
@@ -134,7 +134,7 @@ public class XmlReformas implements Serializable {
         }
     }
 
-        private static void mostrarPendientes() {
+    private static void mostrarPendientes() {
         int num = 1;
         for (Cliente cliente : listaClientes.getLista()) {
             for (Presupuesto presupuesto : cliente.getListaPres().getLista()) {
@@ -147,12 +147,37 @@ public class XmlReformas implements Serializable {
                     System.out.println("Telefono :" + cliente.getTel());
                     System.out.println("**********************************");
                     System.out.println("Concepto: " + presupuesto.getConcepto());
-                    System.out.println("Precio neto: " + presupuesto.getPrecioN());                    
+                    System.out.println("Precio neto: " + presupuesto.getPrecioN());
                     System.out.println("----------------------------------------------");
                     num++;
                 }
             }
 
+        }
+    }
+
+    private static void presupuestosCliente() {
+        int tel;
+        String crear;
+        Cliente clientepres = new Cliente();
+        tel = InputData.pedirEntero("Introduce el Telefono del cliente: ");
+        clientepres = listaClientes.encontrarTel(tel);
+        if (clientepres == null) {
+            crear = InputData.pedirCadena("El cliente no existe, quieres crearlo? s = SI");
+            if (crear.equals("s")) {
+                newCliente();
+            } else {
+                return;
+            }
+        } else {
+            System.out.println("Cliente: " + clientepres.getNombre());
+            System.out.println("Presupuestos: ");
+            for (Presupuesto presupuesto : clientepres.getListaPres().getLista()) {
+                System.out.println("Concepto: " + presupuesto.getConcepto());
+                System.out.println("Precio Neto: " + presupuesto.getPrecioN());
+                System.out.println("Estado: " + presupuesto.getEstado());
+                System.out.println("----------------------------------------------");
+            }
         }
     }
 }

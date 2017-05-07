@@ -5,16 +5,16 @@
    <void method="add">
     <object class="xml.reformas.Cliente">
      <void property="apellido">
-      <string>aaa</string>
+      <string>jump</string>
      </void>
      <void property="listaPres">
-      <object class="xml.reformas.ListaPresupuestos"/>
+      <object class="xml.reformas.ListaPresupuestos" id="ListaPresupuestos0"/>
      </void>
      <void property="nombre">
-      <string>paco</string>
+      <string>jimmy</string>
      </void>
      <void property="tel">
-      <int>606</int>
+      <int>601</int>
      </void>
     </object>
    </void>
@@ -24,40 +24,41 @@
       <boolean>true</boolean>
      </void>
      <void property="apellido">
-      <string>neutron</string>
+      <string>el del bombo</string>
      </void>
      <void property="listaPres">
-      <object class="xml.reformas.ListaPresupuestos" id="ListaPresupuestos0"/>
+      <object class="xml.reformas.ListaPresupuestos"/>
      </void>
      <void property="nombre">
-      <string>jimmy</string>
+      <string>manolo</string>
      </void>
      <void property="tel">
-      <int>607</int>
+      <int>602</int>
      </void>
     </object>
    </void>
   </void>
  </object>
+<void class="xml.reformas.Presupuesto" id="Presupuesto0">
+ <void property="estado">
+  <string>pendiente</string>
+ </void>
+ <void property="idPres">
+  <int>1</int>
+ </void>
+ <void property="precioN">
+  <double>200.0</double>
+ </void>
+ <void property="concepto">
+  <string>patatas</string>
+ </void>
+</void>
 <void class="xml.reformas.ListaPresupuestos" id="Field0" method="getField">
  <string>listaPres</string>
  <void id="ArrayList0" method="get">
   <object idref="ListaPresupuestos0"/>
   <void method="add">
-   <object class="xml.reformas.Presupuesto">
-    <void property="concepto">
-     <string>cohetes</string>
-    </void>
-    <void property="estado">
-     <string>pendiente</string>
-    </void>
-    <void property="idPres">
-     <int>1</int>
-    </void>
-    <void property="precioN">
-     <double>200.0</double>
-    </void>
-   </object>
+   <object idref="Presupuesto0"/>
   </void>
  </void>
 </void>
