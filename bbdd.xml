@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_131" class="java.beans.XMLDecoder">
+ <object class="xml.reformas.ListaClientes" id="ListaClientes0">
+  <void property="lista">
+   <void method="add">
+    <object class="xml.reformas.Cliente">
+     <void property="apellido">
+      <string>aaa</string>
+     </void>
+     <void property="listaPres">
+      <object class="xml.reformas.ListaPresupuestos"/>
+     </void>
+     <void property="nombre">
+      <string>paco</string>
+     </void>
+     <void property="tel">
+      <int>606</int>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>
