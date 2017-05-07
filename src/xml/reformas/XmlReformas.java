@@ -5,11 +5,15 @@
  */
 package xml.reformas;
 
+import java.io.Serializable;
+import tools.Fichero;
+import tools.InputData;
+import java.util.ArrayList;
 /**
  *
  * @author ferran
  */
-public class XmlReformas {
+public class XmlReformas implements Serializable {
 
     /**
      * @param args the command line arguments
