@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package xml.reformas;
 
 import java.io.Serializable;
@@ -16,23 +11,23 @@ import java.util.ArrayList;
  */
 public class XmlReformas implements Serializable {
 
-    
-        private static ListaClientes listaClientes;
+    private static ListaClientes listaClientes;
     //la classe fichero viene de tools
     private static Fichero Clientes;
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         Clientes = new Fichero("bbdd.xml");
-         //carrego les dades
-         listaClientes = (ListaClientes) Clientes.leer();
-         // Si nohi ha dades ho inicialitzo
+        Clientes = new Fichero("bbdd.xml");
+        //carrego les dades
+        listaClientes = (ListaClientes) Clientes.leer();
+        // Si nohi ha dades ho inicialitzo
         if (listaClientes == null) {
             listaClientes = new ListaClientes();
         }
-           
-         int opcion;
+
+        int opcion;
         do {
             mostrarMenu();
             opcion = InputData.pedirEntero("Escoge una opción");
@@ -41,7 +36,7 @@ public class XmlReformas implements Serializable {
                     newCliente();
                     break;
                 case 2:
-                    //nuevoPresupuesto();
+                    newPresupuesto();
                     break;
                 case 3:
                     //mostrarPendientes();
@@ -68,7 +63,7 @@ public class XmlReformas implements Serializable {
     }
 
     private static void mostrarMenu() {
-        System.out.println("*** GESTION REFORMAS ***");
+        System.out.println("*** GESTION REFORMAS  by torrafa***");
         System.out.println("1.- Alta Cliente");
         System.out.println("2.- Nuevo Presupuesto");
         System.out.println("3.- Presupuestes pendientes (de aceptar o rechazar)");
@@ -78,8 +73,8 @@ public class XmlReformas implements Serializable {
         System.out.println("7.- Cambiar estado presupuesto");
         System.out.println("0.- Salir");
     }
-    
-        private static void newCliente() {
+
+    private static void newCliente() {
         String nombre;
         String apellido;
         int tel;
@@ -99,9 +94,44 @@ public class XmlReformas implements Serializable {
             listaClientes.altaCliente(newcliente);
             Clientes.grabar(listaClientes);
         } else {
-            System.out.println("Cliente :" +nombre +" no creado, ya hay un cliente con el mesmo numero de telefono");
+            System.out.println("Cliente :" + nombre + " no creado, ya hay un cliente con el mesmo numero de telefono");
         }
 
     }
-    
+
+    private static void newPresupuesto() {
+        int ok = 0;
+        int tel;
+        String crear;
+        Cliente clientepres = new Cliente();
+        tel = InputData.pedirEntero("Introduce el Telefono de el cliente: ");
+        clientepres = listaClientes.encontrarTel(tel);
+        if (clientepres == null) {
+            crear = InputData.pedirCadena("El cliente no existe, quieres crearlo? s = SI");
+            if (crear.equals("s")) {
+                newCliente();
+            } else {
+              return;  
+            }
+        } else {
+            String concepto;
+            int precioneto;
+            String estado;
+            concepto = InputData.pedirCadena("Concepto: ");
+            precioneto = InputData.pedirEntero("Precio Neto: ");
+            do {
+                estado = InputData.pedirCadena("Estado: ");
+                if (estado.equals("pendiente") || estado.equals("aceptado") || estado.equals("rechazado")) {
+                    ok = 1;
+                }
+                if (ok == 0) {
+                    System.out.println("Opcion icorrecta, las opciones son: pendiente/aceptado/rechazado");
+                }
+            } while (ok == 0);
+            Presupuesto c = new Presupuesto(concepto, precioneto, estado);
+            clientepres.getListaPres().registrarPresupuesto(c);
+            Clientes.grabar(listaClientes);
+        }
+    }
+
 }
