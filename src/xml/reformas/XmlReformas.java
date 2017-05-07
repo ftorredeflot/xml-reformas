@@ -45,7 +45,7 @@ public class XmlReformas implements Serializable {
                     presupuestosCliente();
                     break;
                 case 5:
-                    //presupuestosRechazados();
+                    presupuestosRechazados();
                     break;
                 case 6:
                     //clientesNPres();
@@ -180,4 +180,28 @@ public class XmlReformas implements Serializable {
             }
         }
     }
+    
+    
+    
+    private static void presupuestosRechazados() {
+
+        int numpres = 1;
+        for (Cliente cliente : listaClientes.getLista()) {
+            for (Presupuesto presupuesto : cliente.getListaPres().getLista()) {
+                if (!presupuesto.getEstado().equalsIgnoreCase("pendiente") && !presupuesto.getEstado().equalsIgnoreCase("aceptado")) {
+                    System.out.println("Nombre :" + cliente.getNombre());
+                    System.out.println("Apellido :" + cliente.getApellido());
+                    System.out.println("Presupuesto pendiente nº " + numpres);
+                    System.out.println("Concepto: " + presupuesto.getConcepto());
+                    System.out.println("Precio neto: " + presupuesto.getPrecioN());
+                    System.out.println("----------------------------------------------");
+                    numpres++;
+                }
+        
+            }
+
+        }
+    }
+    
+    
 }

@@ -41,16 +41,16 @@
  </object>
 <void class="xml.reformas.Presupuesto" id="Presupuesto0">
  <void property="estado">
-  <string>pendiente</string>
+  <string>rechazado</string>
  </void>
  <void property="idPres">
   <int>1</int>
  </void>
  <void property="precioN">
-  <double>200.0</double>
+  <double>100.0</double>
  </void>
  <void property="concepto">
-  <string>patatas</string>
+  <string>cocos</string>
  </void>
 </void>
 <void class="xml.reformas.ListaPresupuestos" id="Field0" method="getField">
@@ -59,6 +59,22 @@
   <object idref="ListaPresupuestos0"/>
   <void method="add">
    <object idref="Presupuesto0"/>
+  </void>
+  <void method="add">
+   <object class="xml.reformas.Presupuesto">
+    <void property="concepto">
+     <string>patatas</string>
+    </void>
+    <void property="estado">
+     <string>pendiente</string>
+    </void>
+    <void property="idPres">
+     <int>1</int>
+    </void>
+    <void property="precioN">
+     <double>200.0</double>
+    </void>
+   </object>
   </void>
  </void>
 </void>
