@@ -16,18 +16,29 @@ import java.util.ArrayList;
  */
 public class XmlReformas implements Serializable {
 
+    
+        private static ListaClientes listaClientes;
+    //la classe fichero viene de tools
+    private static Fichero Clientes;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+         Clientes = new Fichero("bbdd.xml");
+         //carrego les dades
+         listaClientes = (ListaClientes) Clientes.leer();
+         // Si nohi ha dades ho inicialitzo
+        if (listaClientes == null) {
+            listaClientes = new ListaClientes();
+        }
+           
          int opcion;
         do {
             mostrarMenu();
             opcion = InputData.pedirEntero("Escoge una opción");
             switch (opcion) {
                 case 1:
-                    //altaCliente();
+                    newCliente();
                     break;
                 case 2:
                     //nuevoPresupuesto();
@@ -67,4 +78,30 @@ public class XmlReformas implements Serializable {
         System.out.println("7.- Cambiar estado presupuesto");
         System.out.println("0.- Salir");
     }
+    
+        private static void newCliente() {
+        String nombre;
+        String apellido;
+        int tel;
+        String vip;
+        boolean vipb = false;
+        Cliente newcliente = new Cliente();
+        nombre = InputData.pedirCadena("Nombre :");
+        apellido = InputData.pedirCadena("Apellido: ");
+        tel = InputData.pedirEntero("Telefono :");
+        newcliente = listaClientes.encontrarTel(tel);
+        if (newcliente == null) {
+            vip = InputData.pedirCadena("El cliente es vip? s- SI n-NO");
+            if (vip.equals("s")) {
+                vipb = true;
+            }
+            newcliente = new Cliente(nombre, apellido, tel, vipb);
+            listaClientes.altaCliente(newcliente);
+            Clientes.grabar(listaClientes);
+        } else {
+            System.out.println("Cliente :" +nombre +" no creado, ya hay un cliente con el mesmo numero de telefono");
+        }
+
+    }
+    
 }
