@@ -69,7 +69,7 @@
      <string>pendiente</string>
     </void>
     <void property="idPres">
-     <int>1</int>
+     <int>2</int>
     </void>
     <void property="precioN">
      <double>200.0</double>

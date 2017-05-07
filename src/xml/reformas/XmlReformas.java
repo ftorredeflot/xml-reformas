@@ -48,10 +48,10 @@ public class XmlReformas implements Serializable {
                     presupuestosRechazados();
                     break;
                 case 6:
-                    //clientesNPres();
+                    clientesNPres();
                     break;
                 case 7:
-                    //estadoPresupuesto();
+                    estadoPresupuesto();
                     break;
                 case 0:
                     System.out.println("Hasta luego!!");
@@ -173,6 +173,7 @@ public class XmlReformas implements Serializable {
             System.out.println("Cliente: " + clientepres.getNombre());
             System.out.println("Presupuestos: ");
             for (Presupuesto presupuesto : clientepres.getListaPres().getLista()) {
+                System.out.println("ID: " + presupuesto.getIdPres());
                 System.out.println("Concepto: " + presupuesto.getConcepto());
                 System.out.println("Precio Neto: " + presupuesto.getPrecioN());
                 System.out.println("Estado: " + presupuesto.getEstado());
@@ -180,9 +181,7 @@ public class XmlReformas implements Serializable {
             }
         }
     }
-    
-    
-    
+
     private static void presupuestosRechazados() {
 
         int numpres = 1;
@@ -197,11 +196,26 @@ public class XmlReformas implements Serializable {
                     System.out.println("----------------------------------------------");
                     numpres++;
                 }
-        
+
             }
 
         }
     }
-    
-    
+
+    private static void clientesNPres() {
+        int numpres = 0;
+        for (Cliente cliente : listaClientes.getLista()) {
+            System.out.println("Nombre :" + cliente.getNombre());
+            System.out.println("Apellido :" + cliente.getApellido());
+            System.out.println("Telefono :" + cliente.getTel());
+            for (Presupuesto presupuesto : cliente.getListaPres().getLista()) {
+                numpres++;
+            }
+            System.out.println("Nº presupuestos " + numpres);
+            numpres = 0;
+            System.out.println("----------------------------------------------");
+        }
+    }
+
+    private static void estadoPresupuesto() {System.out.println("No Operativo!");}
 }
